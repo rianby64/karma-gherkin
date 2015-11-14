@@ -1,0 +1,14 @@
+{
+  "name": "karma-gherkin",
+  "version": "0.0.0",
+  "description": "A simple integration-tool with Karma for writting features",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "karma start"
+  },
+  "author": "Andres Rios",
+  "license": "ISC",
+  "dependencies": {
+    "gherkin": "^3.1.2"
+  }
+}
