@@ -1,12 +1,12 @@
 {
   "name": "karma-gherkin",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "A simple integration-tool with Karma for writting features",
   "main": "lib/index.js",
   "scripts": {
-    "test": "karma start"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Andres Rios",
+  "author": "Andres Rios <info@matematico.pro>",
   "license": "ISC",
   "dependencies": {
     "gherkin": "^3.1.2"
