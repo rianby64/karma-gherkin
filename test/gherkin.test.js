@@ -8,4 +8,5 @@
  *     if a feature(...) contains an scenario and in another place an scenario was written as stand-alone definition
  *     then the stand-alone definition becomes a global definition and the scenario inside the feature belongs
  *     to the feature
+ *  - do not accept recursive features, scenarios nor steps!
  */
