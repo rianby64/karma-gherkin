@@ -4,11 +4,17 @@
   "description": "A simple integration-tool with Karma for writting features",
   "main": "lib/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "karma start"
   },
   "author": "Andres Rios <info@matematico.pro>",
   "license": "ISC",
   "dependencies": {
     "gherkin": "^3.1.2"
+  },
+  "devDependencies": {
+    "jasmine-core": "^2.3.4",
+    "karma": "^0.13.15",
+    "karma-chrome-launcher": "^0.2.1",
+    "karma-jasmine": "^0.3.6"
   }
 }
