@@ -1,6 +1,6 @@
 {
   "name": "karma-gherkin",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A simple integration-tool with Karma for writting features",
   "main": "lib/index.js",
   "scripts": {
