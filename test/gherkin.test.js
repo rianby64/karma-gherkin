@@ -1,4 +1,12 @@
 'use strict';
+
+var CONST_FEATURE = "feature",
+    CONST_SCENARIO = "scenario",
+    CONST_STEP = "step",
+    CONST_WHEN = "when",
+    CONST_THEN = "then",
+    CONST_GIVEN = "given";
+
 /** TODO> Include some test for lib/gherkin.js
  * For example:
  *  - load the module into an environment that already has a gherkin variable defined
@@ -92,11 +100,58 @@ describe("The construction of embedded definitions", function() {
     });
 
     it("contains> definitions()", function() {
-      expect(gherkin.definitions instanceof Function).toBe(true);
-      var definitions = gherkin.definitions();
+      expect(gherkin.getDefinitions instanceof Function).toBe(true);
+      var definitions = gherkin.getDefinitions();
       expect(definitions instanceof Object).toBe(true);
-    })
+    });
+    it("contains> run()", function() {
+      expect(gherkin.run instanceof Function).toBe(true);
+    });
 
     // TODO> check if name, fn and thisArg are regExp|string, function and object|undefined types
-  })
+  });
+
+  describe("allows the feature, scenario and step functions to", function() {
+    beforeEach(function() {
+      window.gherkin = new Gherkin();
+    });
+    /**
+     * after calling [definition]('name', fn, thisArg)
+     * gherkin.definitions() === { 0: { type: definition, name: 'name', fn: fn, thisArg: thisArg } }
+     * where [definition] = {feature, scenario, step}
+     */
+    it("be called, then definition property holds the passed information", function() {
+      gherkin.feature("feature1", function() { });
+      gherkin.scenario("scenario1", function() { });
+      gherkin.step("step1", function() { });
+
+      var definitions = gherkin.getDefinitions();
+      expect(definitions[0].name).toBe('feature1');
+      expect(definitions[0].type).toBe(CONST_FEATURE);
+      expect(definitions[0].fn instanceof Function).toBe(true);
+      expect(definitions[0].definitions instanceof Object).toBe(true);
+      expect(definitions[1].name).toBe('scenario1');
+      expect(definitions[1].type).toBe(CONST_SCENARIO);
+      expect(definitions[1].fn instanceof Function).toBe(true);
+      expect(definitions[1].definitions instanceof Object).toBe(true);
+      expect(definitions[2].name).toBe('step1');
+      expect(definitions[2].type).toBe(CONST_STEP);
+      expect(definitions[2].fn instanceof Function).toBe(true);
+      expect(definitions[2].definitions).toBe(undefined);
+    });
+    it("run each definition that knows how is the caller", function() {
+      gherkin.feature("feature1", function featureTest() {
+
+        var currentParent = gherkin.getParent();
+        console.log(currentParent);
+
+        gherkin.scenario("scenario1", function scenarioTest() {
+          gherkin.step("step1", function stepTest() {
+
+          })
+        });
+      });
+      gherkin.run();
+    });
+  });
 });
